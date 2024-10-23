@@ -1,114 +1,109 @@
-# Документация по проекту Telegram-бота для медицинских анализов
+# Documentation for the Medical Analysis Telegram Bot Project
 
-## Описание
+## Description
 
-Этот проект представляет собой Telegram-бота, который принимает документы с медицинскими анализами и исследованиями, извлекает данные из них и отвечает на вопросы пользователей на основе сохранённых данных.
+This project is a Telegram bot that accepts medical analysis and research documents, extracts data from them, and responds to user questions based on the stored data.
 
-## Функциональные требования
+## Functional Requirements
 
-1. **Приём документов**
-   - Бот должен уметь принимать документы в форматах PDF, PNG, JPEG.
-   - Пользователь загружает файл с медицинскими анализами в чат с ботом.
+1. **Document Reception**
+   - The bot must accept documents in PDF, PNG, and JPEG formats.
+   - The user uploads a file containing medical analyses to the chat with the bot.
 
-2. **Извлечение данных**
-   - Бот должен извлекать из документов следующие данные:
-     - Для медицинских анализов:
-       - Наименование анализа (например, "Гемоглобин", "Глюкоза").
-       - Референтные значения (нормы) для анализа.
-       - Единицы измерения (например, г/дл, %).
-       - Результаты анализа (например, числовое значение или текст).
-       - Дата проведения анализа.
-       - Место проведения анализа (например, наименование медучреждения).
-       - Адрес места проведения анализа.
-     - Для медицинских исследований:
-       - Наименование исследования (например, "Ультразвуковое исследование").
-       - Дата проведения исследования.
-       - Место проведения исследования (например, наименование медучреждения).
-       - Аппарат, на котором проводилось исследование.
-       - Протокол исследования.
-       - Заключение исследования.
-       - Рекомендация исследования.
-       - Адрес места проведения исследования.
-   - Извлечённые данные должны быть структурированы и представлены в виде списка пользователю.
+2. **Data Extraction**
+   - The bot must extract the following data from documents:
+     - For medical analyses:
+       - Name of the analysis (e.g., "Hemoglobin," "Glucose").
+       - Reference values (normal ranges) for the analysis.
+       - Units of measurement (e.g., g/dL, %).
+       - Results of the analysis (e.g., numerical values or text).
+       - Date of the analysis.
+       - Location where the analysis was conducted (e.g., name of the medical institution).
+       - Address of the institution.
+     - For medical research:
+       - Name of the research (e.g., "Ultrasound").
+       - Date of the research.
+       - Location where the research was conducted (e.g., name of the medical institution).
+       - The equipment used for the research.
+       - Research protocol.
+       - Research conclusions.
+       - Research recommendations.
+       - Address of the institution.
+   - The extracted data must be structured and presented as a list to the user.
 
-3. **Сохранение данных**
-   - Извлечённые данные должны быть сохранены в базе данных PostgreSQL.
-   - Структура базы данных должна позволять эффективно хранить и запрашивать данные.
+3. **Data Storage**
+   - The extracted data must be saved in a PostgreSQL database.
+   - The database structure should allow for efficient data storage and querying.
 
-4. **Взаимодействие с пользователем**
-   - Бот должен уметь отвечать на вопросы пользователя по загруженным медицинским анализам и исследованиям.
-   - Пользователь должен иметь возможность задавать вопросы боту, например:
-     - "Какие у меня были результаты по [наименование анализа]?"
-     - "Покажи результаты анализов за [период времени]."
-   - Бот должен корректно интерпретировать запросы пользователя и предоставлять соответствующие ответы на основе данных в базе данных.
+4. **User Interaction**
+   - The bot must be able to answer user questions based on the uploaded medical analyses and research.
+   - Users should be able to ask questions to the bot, such as:
+     - "What were my results for [analysis name]?"
+     - "Show me the test results from [time period]."
+   - The bot should correctly interpret user queries and provide appropriate responses based on the data in the database.
 
-5. **Обработка запросов**
-   - Бот должен корректно извлекать и отображать информацию из базы данных на основе пользовательских запросов.
-   - Ответы бота должны быть точными и содержать все запрашиваемые данные.
+5. **Request Handling**
+   - The bot must correctly extract and display information from the database based on user queries.
+   - The bot's responses should be accurate and include all requested data.
 
-## Нефункциональные требования
+## Non-Functional Requirements
 
-1. **Документация**
-   - Необходимо предоставить краткую документацию по архитектуре решения, включая описание структуры базы данных, используемых библиотек и API.
-   - Описание процесса деплоя и запуска бота.
+1. **Documentation**
+   - A brief documentation of the solution architecture should be provided, including a description of the database structure, libraries, and APIs used.
+   - Documentation for deployment and running the bot must be included.
 
-2. **Инструменты и технологии**
-   - Telegram Bot API для создания бота.
-   - Любая библиотека для обработки и извлечения текста из PDF, PNG, JPEG.
-   - Любое API проприетарной большой языковой модели.
-   - PostgreSQL для хранения данных.
-   - Любая ORM для работы с базой данных.
-   - Docker для контейнеризации решения (желательно, но необязательно).
+2. **Tools and Technologies**
+   - Telegram Bot API for bot creation.
+   - Any library for processing and extracting text from PDF, PNG, and JPEG.
+   - Any proprietary large language model API.
+   - PostgreSQL for data storage.
+   - Any ORM for database interactions.
+   - Docker for containerization (optional, but preferred).
 
-## Ключевые метрики оценки
+## Key Evaluation Metrics
 
-1. **Количество правильно извлечённых данных**
-   - Процент извлечённых данных из документов, соответствующих реальным данным в анализах.
-   - Корректность извлечения всех требуемых полей (наименование анализа, референтные значения, результаты, дата, место).
+1. **Data Extraction Accuracy**
+   - The percentage of correctly extracted data from documents compared to the actual data in the analyses.
+   - Accuracy of extracting all required fields (analysis name, reference values, results, date, location).
 
-2. **Количество правильных ответов на вопросы пользователя**
-   - Точность и полнота ответов бота на запросы пользователей.
-   - Способность бота интерпретировать различные формулировки запросов.
+2. **Correct User Query Responses**
+   - The accuracy and completeness of the bot's answers to user requests.
+   - The bot's ability to interpret various query formulations.
 
-3. **Производительность**
-   - Время обработки документов и генерации ответов на запросы пользователя.
+3. **Performance**
+   - Document processing time and response generation for user queries.
 
-## Архитектура решения
+## Solution Architecture
 
-### Файлы проекта
+### Project Files
 
-- **`bot.py`**: Основной файл, который обрабатывает вебхуки от Telegram, загружает файлы, извлекает текст и взаимодействует с моделью GPT-4.
+- **`bot.py`**: Main file that handles Telegram webhooks, uploads files, extracts text, and interacts with the GPT-4 model.
+- **`llm.py`**: Module for interacting with the OpenAI API to get responses from the GPT-4 model.
+- **`text_extraction.py`**: Module for extracting text from PDFs and images.
+- **`models.py`**: Defines the database structure using SQLAlchemy.
+- **`db_setup.py`**: Sets up the database connection and creates sessions.
 
-- **`llm.py`**: Модуль для взаимодействия с API OpenAI для получения ответов от модели GPT-4.
+### Database
 
-- **`text_extraction.py`**: Модуль для извлечения текста из PDF и изображений.
+The PostgreSQL database structure includes two main tables:
 
-- **`models.py`**: Определяет структуру базы данных с помощью SQLAlchemy.
+- **`users`**: Table storing user information (ID, first name, last name, username).
+- **`files`**: Table storing file information (ID, user ID, file name, file type, content).
 
-- **`db_setup.py`**: Настройка подключения к базе данных и создание сессий.
+### Deployment Process
 
-### База данных
+1. **Environment Setup**
+   - Install necessary dependencies.
+   - Set up environment variables (e.g., `TOKEN`, `OPENAI_API_KEY`, `DATABASE_URL`).
 
-Структура базы данных PostgreSQL включает две основные таблицы:
+2. **Running the Application**
+   - Start the Flask server using the command `python bot.py`.
+   - Set the Telegram webhook using the `/set-webhook` endpoint.
 
-- **`users`**: Таблица пользователей, содержащая информацию о пользователе (ID, имя, фамилия, никнейм).
+## Notes
 
-- **`files`**: Таблица файлов, содержащая информацию о загруженных файлах (ID, ID пользователя, имя файла, тип файла, содержание).
-
-### Процесс деплоя
-
-1. **Настройка окружения**
-   - Установите необходимые зависимости.
-   - Настройте переменные окружения (например, `TOKEN`, `OPENAI_API_KEY`, `DATABASE_URL`).
-
-2. **Запуск приложения**
-   - Запустите Flask сервер с помощью команды `python bot.py`.
-   - Настройте вебхук Telegram с помощью эндпоинта `/set-webhook`.
-
-## Примечания
-
-- Убедитесь, что все переменные окружения настроены правильно.
-- Проверьте, что все зависимости установлены.
-- Для обработки изображений требуется установленный Tesseract-OCR.
-- Бот не запоминает предыдущие взаимодействия и может предоставить ответ только на основе информации, содержащейся в загруженных документах.
-- В случае превышения допустимого объема файловой информации, бот не сможет обработать запросы.
+- Ensure all environment variables are set correctly.
+- Check that all dependencies are installed.
+- Tesseract-OCR must be installed for image processing.
+- The bot does not retain previous interactions and can only provide answers based on the information contained in the uploaded documents.
+- If the file size exceeds the allowed limit, the bot will not be able to process the request.
